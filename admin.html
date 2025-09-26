@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Admin Panel - RFCE Senior Living Community</title>
+    <meta name="description" content="Administrative panel for RFCE Senior Living Community content management.">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+<body class="page-admin">
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">RFCE Admin</div>
+            <ul class="nav-menu">
+                <li><a href="./index.html" class="nav-link">Home</a></li>
+                <li><a href="./gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="./contact.html" class="nav-link">Contact</a></li>
+                <li>
+                    <button class="theme-toggle" aria-label="Toggle dark mode">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2.25A9.75 9.75 0 1 0 21.75 12c0-.101-.004-.201-.012-.3A7.5 7.5 0 0 1 12 2.25Z"/>
+                        </svg>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Admin Login Section -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h1 class="section-title reveal">Admin Panel</h1>
+                    <p class="section-subtitle reveal">Content management system for RFCE Senior Living Community</p>
+                </div>
+                
+                <!-- Login Form -->
+                <form class="contact-form reveal" data-admin-login style="max-width: 400px; margin: 0 auto;">
+                    <h2 style="text-align: center; margin-bottom: var(--space-2xl); color: var(--text-primary);">Admin Login</h2>
+                    
+                    <div class="form-group">
+                        <label for="admin-email" class="form-label">Email Address</label>
+                        <input type="email" id="admin-email" name="email" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="admin-password" class="form-label">Password</label>
+                        <input type="password" id="admin-password" name="password" class="form-input" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                        Login
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Admin Dashboard Section -->
+        <section class="section" data-admin-dash style="display: none;">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Dashboard</h2>
+                    <div style="margin-top: var(--space-lg);">
+                        <button class="btn btn-outline" data-admin-logout>Logout</button>
+                    </div>
+                </div>
+
+                <!-- Tours Management -->
+                <div style="margin-bottom: var(--space-3xl);" data-admin-tours>
+                    <h3 style="margin-bottom: var(--space-lg); color: var(--text-primary);">Tours Management</h3>
+                    
+                    <!-- Tours Controls -->
+                    <div style="margin-bottom: var(--space-lg); display: flex; gap: var(--space-md); flex-wrap: wrap; align-items: center;">
+                        <!-- Search -->
+                        <div class="search-row" style="flex: 1; min-width: 250px;">
+                            <div class="search-input">
+                                <svg viewBox="0 0 24 24" width="18" height="18">
+                                    <path fill="currentColor" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                                </svg>
+                                <input type="text" data-tours-search placeholder="Search tours by name, email, phone, or note..." style="border: none; outline: none; background: transparent; flex: 1; font-size: 1rem;">
+                                <button data-tours-search-clear style="border: none; background: transparent; cursor: pointer; opacity: 0.6; padding: 0.25rem 0.4rem; border-radius: 8px; color: var(--text-secondary); font-size: 1.2rem; line-height: 1;">×</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Date Range Filter -->
+                        <div style="display: flex; gap: var(--space-sm); align-items: center;">
+                            <label style="font-size: var(--font-size-sm); color: var(--text-secondary);">From:</label>
+                            <input type="date" data-tours-date-from style="padding: var(--space-sm); border: 1px solid var(--bg-light); border-radius: var(--border-radius); font-size: var(--font-size-sm);">
+                        </div>
+                        <div style="display: flex; gap: var(--space-sm); align-items: center;">
+                            <label style="font-size: var(--font-size-sm); color: var(--text-secondary);">To:</label>
+                            <input type="date" data-tours-date-to style="padding: var(--space-sm); border: 1px solid var(--bg-light); border-radius: var(--border-radius); font-size: var(--font-size-sm);">
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div style="display: flex; gap: var(--space-sm);">
+                            <button class="btn btn-outline" data-tours-refresh style="font-size: var(--font-size-sm); padding: var(--space-sm) var(--space-md);">Refresh</button>
+                            <button class="btn btn-outline" data-tours-export style="font-size: var(--font-size-sm); padding: var(--space-sm) var(--space-md);">Export CSV</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Tours Table -->
+                    <div class="admin-table-wrapper" data-tours-table-wrapper>
+                        <table class="admin-unified-table">
+                            <colgroup>
+                                <col style="width: 120px;"> <!-- Created -->
+                                <col style="width: 100px;"> <!-- Source -->
+                                <col style="width: 150px;"> <!-- Name -->
+                                <col style="width: 200px;"> <!-- Email -->
+                                <col style="width: 140px;"> <!-- Phone -->
+                                <col> <!-- Note/Message (auto) -->
+                                <col style="width: 130px;"> <!-- Pref. Date -->
+                                <col style="width: 120px;"> <!-- Pref. Time -->
+                                <col style="width: 100px;"> <!-- Actions -->
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>Created</th>
+                                    <th>Source</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Note</th>
+                                    <th>Pref. Date</th>
+                                    <th>Pref. Time</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody data-tours-table-body>
+                                <!-- Tours will be loaded here -->
+                            </tbody>
+                        </table>
+                        
+                        <!-- Loading State -->
+                        <div data-tours-loading style="display: none; padding: var(--space-2xl); text-align: center; color: var(--text-secondary);">
+                            <div style="display: inline-block; width: 20px; height: 20px; border: 2px solid var(--bg-light); border-top: 2px solid var(--brand); border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                            <span style="margin-left: var(--space-sm);">Loading tours...</span>
+                        </div>
+                        
+                        <!-- Empty State -->
+                        <div data-tours-empty style="display: none; padding: var(--space-2xl); text-align: center; color: var(--text-secondary);">
+                            <p>No tours found. Try adjusting your search or date filters.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div data-tours-pagination style="margin-top: var(--space-lg); display: flex; justify-content: center; align-items: center; gap: var(--space-sm);">
+                        <!-- Pagination will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Messages Management -->
+                <div style="margin-bottom: var(--space-3xl);" data-admin-messages>
+                    <h3 style="margin-bottom: var(--space-lg); color: var(--text-primary);">Messages Management</h3>
+                    
+                    <!-- Messages Controls -->
+                    <div style="margin-bottom: var(--space-lg); display: flex; gap: var(--space-md); flex-wrap: wrap; align-items: center;">
+                        <!-- Search -->
+                        <div class="search-row" style="flex: 1; min-width: 250px;">
+                            <div class="search-input">
+                                <svg viewBox="0 0 24 24" width="18" height="18">
+                                    <path fill="currentColor" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                                </svg>
+                                <input type="text" data-messages-search placeholder="Search messages by name, email, or message..." style="border: none; outline: none; background: transparent; flex: 1; font-size: 1rem;">
+                                <button data-messages-search-clear style="border: none; background: transparent; cursor: pointer; opacity: 0.6; padding: 0.25rem 0.4rem; border-radius: 8px; color: var(--text-secondary); font-size: 1.2rem; line-height: 1;">×</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Date Range Filter -->
+                        <div style="display: flex; gap: var(--space-sm); align-items: center;">
+                            <label style="font-size: var(--font-size-sm); color: var(--text-secondary);">From:</label>
+                            <input type="date" data-messages-date-from style="padding: var(--space-sm); border: 1px solid var(--bg-light); border-radius: var(--border-radius); font-size: var(--font-size-sm);">
+                        </div>
+                        <div style="display: flex; gap: var(--space-sm); align-items: center;">
+                            <label style="font-size: var(--font-size-sm); color: var(--text-secondary);">To:</label>
+                            <input type="date" data-messages-date-to style="padding: var(--space-sm); border: 1px solid var(--bg-light); border-radius: var(--border-radius); font-size: var(--font-size-sm);">
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div style="display: flex; gap: var(--space-sm);">
+                            <button class="btn btn-outline" data-messages-refresh style="font-size: var(--font-size-sm); padding: var(--space-sm) var(--space-md);">Refresh</button>
+                            <button class="btn btn-outline" data-messages-export style="font-size: var(--font-size-sm); padding: var(--space-sm) var(--space-md);">Export CSV</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Messages Table -->
+                    <div class="admin-table-wrapper" data-messages-table-wrapper>
+                        <table class="admin-unified-table">
+                            <colgroup>
+                                <col style="width: 120px;"> <!-- Created -->
+                                <col style="width: 100px;"> <!-- Source -->
+                                <col style="width: 150px;"> <!-- Name -->
+                                <col style="width: 200px;"> <!-- Email -->
+                                <col style="width: 140px;"> <!-- Phone -->
+                                <col> <!-- Message (auto) -->
+                                <col style="width: 100px;"> <!-- Actions -->
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>Created</th>
+                                    <th>Source</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Message</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody data-messages-table-body>
+                                <!-- Messages will be loaded here -->
+                            </tbody>
+                        </table>
+                        
+                        <!-- Loading State -->
+                        <div data-messages-loading style="display: none; padding: var(--space-2xl); text-align: center; color: var(--text-secondary);">
+                            <div style="display: inline-block; width: 20px; height: 20px; border: 2px solid var(--bg-light); border-top: 2px solid var(--brand); border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                            <span style="margin-left: var(--space-sm);">Loading messages...</span>
+                        </div>
+                        
+                        <!-- Empty State -->
+                        <div data-messages-empty style="display: none; padding: var(--space-2xl); text-align: center; color: var(--text-secondary);">
+                            <p>No messages found. Try adjusting your search or source filter.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div data-messages-pagination style="margin-top: var(--space-lg); display: flex; justify-content: center; align-items: center; gap: var(--space-sm);">
+                        <!-- Pagination will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Image Management -->
+                <div style="margin-bottom: var(--space-3xl);">
+                    <h3 style="margin-bottom: var(--space-lg); color: var(--text-primary);">Image Management</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Destination <span class="req" aria-hidden="true">*</span></label>
+                        <div class="row" style="gap:12px;margin:8px 0;">
+                            <label><input type="radio" name="imgDest" value="gallery" required checked> Gallery</label>
+                        </div>
+                        <div class="form-error" id="dest-error" style="display:none;">Please select a destination</div>
+                    </div>
+                    
+                    <div style="margin-bottom: var(--space-lg);">
+                        <label for="adminUpload" class="form-label">Upload New Image</label>
+                        <input type="file" id="adminUpload" accept="image/*" class="form-input" />
+                    </div>
+                    
+                    <!-- Image Details Section (shown after image selection) -->
+                    <div id="imageDetailsSection" style="display: none; margin-bottom: var(--space-lg); padding: var(--space-lg); background: #f8f9fa; border-radius: 8px; border: 1px solid #e9ecef;">
+                        <h4 style="margin-bottom: var(--space-md); color: var(--text-primary);">Image Details</h4>
+                        
+                        <div class="form-group" style="margin-bottom: var(--space-md);">
+                            <label for="imageTitle" class="form-label">Title <span class="hint">(optional)</span></label>
+                            <input type="text" id="imageTitle" name="title" class="form-input" placeholder="Enter image title...">
+                        </div>
+                        
+                        <div class="form-group" style="margin-bottom: var(--space-md);">
+                            <label for="imageTags" class="form-label">Tags <span class="hint">Press Enter to add tag</span></label>
+                            <div class="tags-input" data-image-tags-input style="border: 1px solid #ddd; border-radius: 4px; padding: 8px; min-height: 40px; background: white;">
+                                <input type="text" id="imageTags" class="tags-entry" data-image-tags-entry placeholder="Type a tag and press Enter..." style="border: none; outline: none; width: 100%;">
+                            </div>
+                            <div class="tags-container" data-image-tags-container style="margin-top: 8px; display: flex; flex-wrap: wrap; gap: 4px;"></div>
+                        </div>
+                        
+                        <div class="form-group" style="margin-bottom: var(--space-md);">
+                            <label for="imageDescription" class="form-label">Description <span class="hint">(optional)</span></label>
+                            <textarea id="imageDescription" name="description" class="form-textarea" rows="4" placeholder="Enter image description..."></textarea>
+                        </div>
+                        
+                        <div style="display: flex; gap: var(--space-sm);">
+                            <button type="button" id="saveImageDetails" class="btn btn-primary">Save Image Details</button>
+                            <button type="button" id="clearImageDetails" class="btn btn-outline">Clear</button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid" data-admin-images style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--space-lg);">
+                        <!-- Images will be loaded here -->
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>RFCE Admin</h3>
+                    <p>Administrative panel for content management and system administration.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="./index.html">Return to Site</a></p>
+                    <p><a href="./gallery.html">Gallery</a></p>
+                    <p><a href="./contact.html">Contact</a></p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 RFCE Senior Living Community. All rights reserved. | Admin Panel</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BEGIN:supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+      const SUPABASE_URL  = "https://turczccfuupwgewlhcej.supabase.co";   // <-- REPLACE
+      const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR1cmN6Y2NmdXVwd2dld2xoY2VqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc1NjM3NTgsImV4cCI6MjA3MzEzOTc1OH0.dQFc74Mu_c6hwtOfIDZ_lUTYJZT3RFnQqLKg3DJor_g";                      // <-- REPLACE
+      window.supa = window.supa || supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+    </script>
+    <!-- END:supabase -->
+    <script src="./assets/js/app.js"></script>
+</body>
+</html>
